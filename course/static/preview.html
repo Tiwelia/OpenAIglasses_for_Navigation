@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ESP32 · 实时预览</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/preview.css">
+  <script src="/static/preview.js" defer></script>
+</head>
+<body>
+  <header class="topbar wrap"><a class="brand" href="/preview"><span class="brand-mark" aria-hidden="true">AG</span><span>ESP32 <small>综合实践 · 图像采集</small></span></a><span class="pill" id="connection">正在连接</span></header>
+  <main class="wrap live-wrap">
+    <div class="intro"><p class="eyebrow">XIAO ESP32S3 SENSE</p><h1>看实时画面，留下这一帧。</h1><p>画面用于取景参考。点击网页按钮截图，预览和截图均不调用 AI。</p></div>
+    <section class="panel live-panel" aria-labelledby="liveTitle">
+      <div class="panel-heading"><h2 id="liveTitle">摄像头实时预览</h2><span class="pill" id="transport">等待设备</span></div>
+      <div class="live-stage"><canvas id="liveCanvas" width="640" height="480" aria-label="ESP32摄像头实时画面" hidden></canvas><div class="empty-preview" id="waiting"><strong>等待 ESP32 画面</strong><span>保持数据线连接，启动摄像头预览桥接程序。</span></div><div class="stream-warning" id="staleWarning" hidden>画面已停止更新，当前显示最后一帧</div></div>
+      <div class="frame-meta"><span id="dimensions">—</span><span id="fps">等待接收</span><span id="age">—</span></div>
+      <div class="live-actions"><button class="primary capture-button" id="captureButton" type="button" disabled>截取当前画面</button><button class="secondary" id="rotateButton" type="button" disabled>旋转 90°</button><span class="muted">截图取自当前显示的画面，预览继续更新。</span></div>
+      <p class="capture-notice" id="notice" role="status" aria-live="polite">截图后可在下方查看，并下载到电脑。</p>
+    </section>
+    <section class="panel history-panel" aria-labelledby="capturesTitle"><div class="panel-heading"><h2 id="capturesTitle">本次截图</h2><span class="muted" id="captureCount">0 张</span></div><p class="muted" id="capturesEmpty">点击“截取当前画面”，保存你想观察的一刻。本页最多保留最近 12 张预览，刷新页面前请下载需要的图片。</p><div class="captures-grid" id="captures"></div></section>
+    <footer>实时画面仅作取景参考<span>ESP32采集 · 电脑转发 · 浏览器显示</span></footer>
+  </main>
+</body>
+</html>
